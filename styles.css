@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #953edb;
+    --secondary-color: #38b6ff;
+    --accent-color: #ff00ff;
+    --dark-bg: #0a0118;
+    --neon-purple: #bc13fe;
+    --neon-blue: #15f4ee;
+}
+
+html, body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--dark-bg);
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.wrapper {
+    position: relative;
+    min-height: 100vh;
+    background: radial-gradient(circle at center, 
+        rgba(149, 62, 219, 0.1) 0%,
+        rgba(56, 182, 255, 0.05) 30%,
+        rgba(10, 1, 24, 0.9) 70%);
+}
+
+/* Enhanced cyber grid with multiple layers */
+.cyber-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(188, 19, 254, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(188, 19, 254, 0.05) 1px, transparent 1px),
+        linear-gradient(rgba(21, 244, 238, 0.03) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(21, 244, 238, 0.03) 2px, transparent 2px);
+    background-size: 30px 30px, 30px 30px, 90px 90px, 90px 90px;
+    z-index: -1;
+    animation: gridMove 20s linear infinite;
+}
+
+.wrapper::before,
+.wrapper::after {
+    content: '';
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.wrapper::before {
+    background: radial-gradient(circle at 50% 50%, 
+        var(--neon-purple) 0%,
+        transparent 10%,
+        transparent 100%);
+    opacity: 0.03;
+    animation: pulse 4s ease-in-out infinite alternate;
+}
+
+.wrapper::after {
+    background: radial-gradient(circle at 70% 30%, 
+        var(--neon-blue) 0%,
+        transparent 15%,
+        transparent 100%);
+    opacity: 0.02;
+    animation: pulse 6s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.02; }
+    100% { transform: scale(1.5); opacity: 0.04; }
+}
+
+@keyframes gridMove {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(30px) rotate(0.5deg); }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.logos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.logos img {
+    height: 150px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.logos img:hover {
+    transform: scale(1.05);
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4rem;
+    text-align: center;
+    margin: 40px 0;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(56, 182, 255, 0.3);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 20px rgba(56, 182, 255, 0.3); }
+    to { text-shadow: 0 0 30px rgba(56, 182, 255, 0.6); }
+}
+
+.nav {
+    background: rgba(255, 0, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    padding: 10px;
+    margin: 30px auto;
+    width: fit-content;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    padding: 12px 24px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.navbar ul li a:hover::before {
+    opacity: 1;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+.card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 
+        0 0 20px rgba(149, 62, 219, 0.2),
+        0 0 60px rgba(56, 182, 255, 0.1);
+    transition: all 0.3s ease;
+    aspect-ratio: 3/4;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        var(--neon-purple), 
+        var(--neon-blue), 
+        var(--neon-purple));
+    z-index: -1;
+    border-radius: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+    opacity: 0.3;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 0 30px rgba(149, 62, 219, 0.3),
+        0 0 80px rgba(56, 182, 255, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover::after {
+    opacity: 1;
+}
+
+figcaption {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    color: #fff;
+    font-size: 16px;
+    z-index: 1;
+    transition: bottom 0.3s ease;
+}
+
+.card:hover figcaption {
+    bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .logos {
+        flex-direction: column;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
